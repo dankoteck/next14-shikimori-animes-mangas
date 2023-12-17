@@ -1,23 +1,24 @@
 import { getPlaiceholder } from "plaiceholder";
-import { ParamsConfig } from "@/app/types";
+import { ParamsConfig } from "../_types";
 
 const baseUrl = process.env.SHIKIMORI_API_BASEURL;
 
 export const buildApiUrlEndpoint = (
   endpoint: string,
   paramsConfig?: ParamsConfig,
+  id: string | number | null = null,
 ): string => {
   let params = "";
+
+  if (!!id) {
+    return `${baseUrl}/api/${endpoint}/${id}`;
+  }
 
   if (paramsConfig) {
     params = new URLSearchParams(paramsConfig).toString();
   }
 
-  const url = `${baseUrl}/api/${endpoint}?${params}`;
-
-  console.log({ fullURL: url }); // For Debugging purpose
-
-  return url;
+  return `${baseUrl}/api/${endpoint}?${params}`;
 };
 
 export const absoluteApiImageSrc = (url: string) => {

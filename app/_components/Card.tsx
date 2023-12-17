@@ -3,8 +3,8 @@ import Image from "next/image";
 import {
   absoluteApiImageSrc,
   generateBlurImgUrl,
-} from "@/app/ultilities/utils";
-import { AnimeTypes, MangaTypes, RanobeTypes } from "@/app/types";
+} from "@/app/_ultilities/utils";
+import { AnimeTypes, MangaTypes, RanobeTypes } from "../_types";
 
 type Props = {
   item: AnimeTypes.Data | MangaTypes.Data | RanobeTypes.Data;
@@ -23,7 +23,7 @@ export default async function Card({ item }: Props) {
         height={100}
         quality={100}
         style={{ width: "100%", height: "100%" }}
-        alt={item.name}
+        alt={`Anime-${item.id}`}
         placeholder={blurDataUrl ? "blur" : undefined}
         blurDataURL={blurDataUrl ? blurDataUrl : undefined}
         className="card-media"
